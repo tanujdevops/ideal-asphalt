@@ -7,7 +7,6 @@ import { siteConfig, getWhatsAppUrl } from "@/config/site";
 import Link from "next/link";
 import Image from "next/image";
 import ProductCard from "@/components/marketing/ProductCard";
-import { primaryButtonClass, secondaryButtonClass } from "@/constants/ui";
 import { ArrowRightIcon, Factory, Fuel, HardHat, CircleDot, Sparkles, BadgeCheck } from "lucide-react";
 
 const aboutHighlights = [
