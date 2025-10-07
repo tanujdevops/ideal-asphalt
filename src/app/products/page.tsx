@@ -160,28 +160,62 @@ const ProductsPage = () => {
                     </Container>
 
                     <div className="overflow-hidden rounded-3xl border border-border/60 bg-background/85 shadow-xl backdrop-blur">
-                        <table className="w-full text-left text-sm">
-                            <thead className="bg-background/80 text-muted-foreground uppercase tracking-[0.2em] text-xs">
-                                <tr>
-                                    <th className="px-6 py-4 font-semibold text-foreground">Grade</th>
-                                    <th className="px-6 py-4 font-semibold">Penetration (dmm)</th>
-                                    <th className="px-6 py-4 font-semibold">Softening point (deg C)</th>
-                                    <th className="px-6 py-4 font-semibold">Best for</th>
-                                    <th className="px-6 py-4 font-semibold">Typical applications</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {comparisonRows.map((row, index) => (
-                                    <tr key={row.grade} className={index % 2 === 1 ? 'bg-background/60' : ''}>
-                                        <td className="px-6 py-4 text-base font-semibold text-foreground">{row.grade}</td>
-                                        <td className="px-6 py-4 text-muted-foreground">{row.penetration}</td>
-                                        <td className="px-6 py-4 text-muted-foreground">{row.softeningPoint}</td>
-                                        <td className="px-6 py-4 text-muted-foreground">{row.bestFor}</td>
-                                        <td className="px-6 py-4 text-muted-foreground">{row.applications}</td>
+                        <div className="hidden sm:block">
+                            <table className="w-full text-left text-sm">
+                                <thead className="bg-background/80 text-muted-foreground uppercase tracking-[0.2em] text-xs">
+                                    <tr>
+                                        <th className="px-6 py-4 font-semibold text-foreground">Grade</th>
+                                        <th className="px-6 py-4 font-semibold">Penetration (dmm)</th>
+                                        <th className="px-6 py-4 font-semibold">Softening point (deg C)</th>
+                                        <th className="px-6 py-4 font-semibold">Best for</th>
+                                        <th className="px-6 py-4 font-semibold">Typical applications</th>
                                     </tr>
-                                ))}
-                            </tbody>
-                        </table>
+                                </thead>
+                                <tbody>
+                                    {comparisonRows.map((row, index) => (
+                                        <tr key={row.grade} className={index % 2 === 1 ? "bg-background/60" : undefined}>
+                                            <td className="px-6 py-4 text-base font-semibold text-foreground">{row.grade}</td>
+                                            <td className="px-6 py-4 text-muted-foreground">{row.penetration}</td>
+                                            <td className="px-6 py-4 text-muted-foreground">{row.softeningPoint}</td>
+                                            <td className="px-6 py-4 text-muted-foreground">{row.bestFor}</td>
+                                            <td className="px-6 py-4 text-muted-foreground">{row.applications}</td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div className="sm:hidden">
+                            {comparisonRows.map((row, index) => (
+                                <div
+                                    key={row.grade}
+                                    className={`px-5 py-5 ${index !== 0 ? "border-t border-border/60" : ""}`}
+                                >
+                                    <div className="flex items-center justify-between">
+                                        <span className="text-lg font-semibold text-foreground">{row.grade}</span>
+                                        <span className="text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground">VG series</span>
+                                    </div>
+                                    <dl className="mt-4 grid grid-cols-2 gap-x-4 gap-y-3 text-sm text-muted-foreground">
+                                        <div className="space-y-1">
+                                            <dt className="text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground/80">Penetration (dmm)</dt>
+                                            <dd className="text-base font-medium text-foreground">{row.penetration}</dd>
+                                        </div>
+                                        <div className="space-y-1">
+                                            <dt className="text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground/80">Softening point (deg C)</dt>
+                                            <dd className="text-base font-medium text-foreground">{row.softeningPoint}</dd>
+                                        </div>
+                                        <div className="space-y-1">
+                                            <dt className="text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground/80">Best for</dt>
+                                            <dd>{row.bestFor}</dd>
+                                        </div>
+                                        <div className="col-span-2 space-y-1">
+                                            <dt className="text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground/80">Typical applications</dt>
+                                            <dd>{row.applications}</dd>
+                                        </div>
+                                    </dl>
+                                </div>
+                            ))}
+                        </div>
                     </div>
                 </div>
             </section>
