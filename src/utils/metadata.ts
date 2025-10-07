@@ -7,17 +7,11 @@ interface MetadataProps {
     noIndex?: boolean;
     keywords?: string[];
     author?: string;
-    twitterHandle?: string;
-    type?: "website" | "article" | "profile";
-    locale?: string;
-    alternates?: Record<string, string>;
-    publishedTime?: string;
-    modifiedTime?: string;
 }
 
 export const generateMetadata = ({
-    title = `Ideal Asphalt - Premium Bitumen & Petroleum Solutions`,
-    description = `Ideal Asphalt — premium bitumen & petroleum solutions. Serving road construction and infrastructure projects for 30+ years. Trusted by road contractors & industries.`,
+    title = "Ideal Asphalt - Premium Bitumen & Petroleum Solutions",
+    description = "Ideal Asphalt - premium bitumen and petroleum solutions. Serving road construction and infrastructure projects for 30+ years. Trusted by road contractors and industries.",
     icons = [
         {
             rel: "icon",
@@ -34,7 +28,7 @@ export const generateMetadata = ({
         "petroleum solutions",
         "road construction",
         "VG-10 bitumen",
-        "VG-20 bitumen", 
+        "VG-20 bitumen",
         "VG-30 bitumen",
         "VG-40 bitumen",
         "asphalt supplier",
@@ -44,26 +38,27 @@ export const generateMetadata = ({
         "infrastructure projects"
     ],
     author = process.env.NEXT_PUBLIC_AUTHOR_NAME,
-    type = "website",
 }: MetadataProps = {}): Metadata => {
     const metadataBase = new URL(process.env.NEXT_PUBLIC_APP_URL || "https://idealasphalt.in");
+    const appName = process.env.NEXT_PUBLIC_APP_NAME;
 
     return {
         metadataBase,
         title: {
-            template: `%s | ${process.env.NEXT_PUBLIC_APP_NAME}`,
-            default: title
+            template: appName ? `%s | ${appName}` : "%s",
+            default: title,
         },
         description,
         keywords,
-        authors: [{ name: author }],
+        authors: author ? [{ name: author }] : undefined,
         creator: author,
-        publisher: process.env.NEXT_PUBLIC_APP_NAME,
+        publisher: appName,
         formatDetection: {
             email: false,
             address: false,
             telephone: false,
         },
         icons,
+        robots: noIndex ? { index: false, follow: false } : undefined,
     };
 };

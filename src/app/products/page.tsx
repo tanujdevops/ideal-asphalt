@@ -1,201 +1,249 @@
 'use client';
 
-import Wrapper from '@/components/global/wrapper';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { siteConfig, getWhatsAppUrl } from '@/config/site';
-import Link from 'next/link';
-import { ArrowRight, CheckCircle } from 'lucide-react';
+import Container from "@/components/global/container";
+import Wrapper from "@/components/global/wrapper";
+import ProductCard from "@/components/marketing/ProductCard";
+import { Button } from "@/components/ui/button";
+import { siteConfig, getWhatsAppUrl } from "@/config/site";
+import { primaryButtonClass, secondaryButtonClass } from "@/constants/ui";
+import Link from "next/link";
+import { BadgeCheck, Sparkles } from "lucide-react";
 
-export default function ProductsPage() {
-  const handleWhatsAppClick = () => {
-    const message = siteConfig.whatsappMessages.quote;
-    const url = getWhatsAppUrl(message);
-    window.open(url, '_blank', 'noopener,noreferrer');
-  };
+const comparisonRows = [
+    {
+        grade: "VG-10",
+        penetration: "80-100",
+        softeningPoint: "40-50",
+        bestFor: "High-temperature regions",
+        applications: "Heavy-duty highways, airport runways",
+    },
+    {
+        grade: "VG-20",
+        penetration: "60-80",
+        softeningPoint: "45-55",
+        bestFor: "Moderate temperature regions",
+        applications: "Municipal roads, resurfacing",
+    },
+    {
+        grade: "VG-30",
+        penetration: "50-70",
+        softeningPoint: "47-57",
+        bestFor: "Heavy-duty applications",
+        applications: "Industrial corridors, national highways",
+    },
+    {
+        grade: "VG-40",
+        penetration: "40-60",
+        softeningPoint: "50-60",
+        bestFor: "Extreme weather conditions",
+        applications: "High-altitude roads, expressways",
+    },
+] as const;
 
-  return (
-    <Wrapper className="py-20">
-      {/* Hero Section */}
-      <section className="text-center py-12">
-        <h1 className="text-4xl md:text-5xl font-bold text-primary mb-6">
-          Our Bitumen Products
-        </h1>
-        <p className="text-xl text-muted-foreground mb-8 max-w-3xl mx-auto">
-          Premium quality bitumen solutions for all your road construction and infrastructure needs. 
-          From standard applications to extreme weather conditions.
-        </p>
-        <Button 
-          size="lg"
-          onClick={handleWhatsAppClick}
-          className="text-white transition-colors duration-300"
-          style={{ backgroundColor: '#ed3838' }}
-          onMouseEnter={(e) => e.target.style.backgroundColor = '#d32f2f'}
-          onMouseLeave={(e) => e.target.style.backgroundColor = '#ed3838'}
-        >
-          Get Quote on WhatsApp
-        </Button>
-      </section>
+type WhyChoose = {
+    title: string;
+    description: string;
+};
 
-      {/* Products Grid */}
-      <section className="py-12">
-        <h2 className="text-3xl font-bold text-center mb-12">Available Bitumen Grades</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {siteConfig.products.map((product) => (
-            <Card key={product.id} className="group hover:shadow-lg transition-all duration-300">
-              <CardHeader>
-                <CardTitle className="text-2xl text-primary">{product.name}</CardTitle>
-                <CardDescription className="text-lg">{product.description}</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-4">
-                  <div>
-                    <h4 className="font-semibold mb-2">Key Features:</h4>
-                    <ul className="space-y-1">
-                      {product.features.map((feature, index) => (
-                        <li key={index} className="flex items-center gap-2 text-sm text-muted-foreground">
-                          <CheckCircle className="w-4 h-4 text-green-500" />
-                          {feature}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                  <div className="pt-4">
-                    <Link href={`/products/${product.slug}`}>
-                      <Button 
-                        variant="outline" 
-                        className="w-full group-hover:bg-primary group-hover:text-white transition-all duration-300"
-                      >
-                        View Details
-                        <ArrowRight className="w-4 h-4 ml-2" />
-                      </Button>
-                    </Link>
-                  </div>
+const whyChoose: WhyChoose[] = [
+    {
+        title: "Certified performance data",
+        description: "Each dispatch includes viscosity, penetration, softening point, and ductility reports for consultant approval.",
+    },
+    {
+        title: "Decades of project insight",
+        description: "We advise on grade selection for highways, airports, ports, and industrial corridors across India.",
+    },
+    {
+        title: "Dispatch discipline",
+        description: "Moisture-controlled storage and calibrated loading keep deliveries punctual and site-ready.",
+    },
+    {
+        title: "On-call technical support",
+        description: "Specialists coordinate with mix designers and site engineers throughout paving windows.",
+    },
+    {
+        title: "Compliance-ready documentation",
+        description: "MSDS, statutory certificates, and batch traceability accompany every truck for smooth approvals.",
+    },
+    {
+        title: "Value-engineered sourcing",
+        description: "Strategic refinery partnerships and in-house logistics keep pricing predictable without sacrificing quality.",
+    },
+];
+
+const ProductsPage = () => {
+    const handleWhatsAppQuote = () => {
+        const url = getWhatsAppUrl(siteConfig.whatsappMessages.quote);
+        window.open(url, "_blank", "noopener,noreferrer");
+    };
+
+    return (
+        <Wrapper className="relative space-y-24 py-24 lg:py-28">
+            <section className="relative overflow-hidden rounded-3xl border border-border/60 bg-gradient-to-b from-background/90 via-background/70 to-background/50 px-6 py-16 sm:px-10 lg:px-16 shadow-[0_40px_120px_-50px_rgba(15,23,42,0.45)]">
+                <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(56,189,248,0.2),transparent_60%)]" />
+                <div className="pointer-events-none absolute -left-24 top-1/3 h-64 w-64 rounded-full bg-red-500/20 blur-3xl" />
+                <div className="pointer-events-none absolute -right-20 bottom-0 h-72 w-72 rounded-full bg-sky-500/25 blur-3xl" />
+
+                <div className="relative z-10 grid gap-12 lg:grid-cols-[1.15fr_0.85fr] lg:items-center">
+                    <Container delay={0.05} className="space-y-8 text-center lg:text-left">
+                        <div className="mx-auto inline-flex items-center gap-2 rounded-full border border-border/40 bg-background/80 px-4 py-1.5 text-sm font-medium text-foreground/80 shadow-sm backdrop-blur lg:mx-0">
+                            <Sparkles className="h-4 w-4 text-sky-500" />
+                            <span>Bitumen product catalogue</span>
+                        </div>
+                        <h1 className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl lg:text-6xl">
+                            Viscosity-grade bitumen tailored for India&apos;s climates and axle loads
+                        </h1>
+                        <p className="mx-auto max-w-2xl text-base leading-relaxed text-muted-foreground lg:mx-0">
+                            Select viscosity grades backed by rigorous QA and disciplined logistics so highways, airports, and industrial corridors stay on schedule.
+                        </p>
+                        <div className="flex flex-col gap-4 sm:flex-row sm:justify-center lg:justify-start">
+                            <Button size="lg" className={primaryButtonClass} onClick={handleWhatsAppQuote}>
+                                Request pricing on WhatsApp
+                            </Button>
+                            <Button asChild size="lg" variant="outline" className={secondaryButtonClass}>
+                                <Link href="/contact">Talk to a specialist</Link>
+                            </Button>
+                        </div>
+                    </Container>
+
+                    <Container delay={0.15} className="relative w-full justify-center">
+                        <div className="relative mx-auto max-w-[420px] space-y-6 rounded-3xl border border-border/60 bg-background/85 p-6 shadow-2xl backdrop-blur">
+                            <div className="rounded-2xl border border-border/50 bg-background/90 p-5 text-sm text-muted-foreground">
+                                <p>
+                                    Ideal Asphalt delivers consistent batches and stores material exactly to spec. Project approvals move faster when their documentation accompanies every truck.
+                                </p>
+                                <div className="mt-4 text-xs uppercase tracking-[0.25em] text-foreground/80">Procurement Head, EPC Contractor</div>
+                            </div>
+                            <div className="grid gap-3 sm:grid-cols-2">
+                                {siteConfig.stats.map((stat) => (
+                                    <div key={stat.label} className="rounded-2xl border border-border/50 bg-background/90 p-4 text-center">
+                                        <div className="text-lg font-semibold text-foreground">{stat.label}</div>
+                                        <div className="text-xs uppercase tracking-[0.25em] text-muted-foreground">{stat.value}</div>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    </Container>
                 </div>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
-      </section>
+            </section>
 
-      {/* Product Comparison */}
-      <section className="py-12 bg-muted/50 rounded-lg">
-        <h2 className="text-3xl font-bold text-center mb-12">Product Comparison</h2>
-        <div className="overflow-x-auto">
-          <table className="w-full border-collapse">
-            <thead>
-              <tr className="border-b">
-                <th className="text-left p-4 font-semibold">Grade</th>
-                <th className="text-left p-4 font-semibold">Penetration (dmm)</th>
-                <th className="text-left p-4 font-semibold">Softening Point (°C)</th>
-                <th className="text-left p-4 font-semibold">Best For</th>
-                <th className="text-left p-4 font-semibold">Applications</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr className="border-b">
-                <td className="p-4 font-medium text-primary">VG-10</td>
-                <td className="p-4">80-100</td>
-                <td className="p-4">40-50</td>
-                <td className="p-4">High-temperature regions</td>
-                <td className="p-4">Heavy-duty highways, airport runways</td>
-              </tr>
-              <tr className="border-b">
-                <td className="p-4 font-medium text-primary">VG-20</td>
-                <td className="p-4">60-80</td>
-                <td className="p-4">45-55</td>
-                <td className="p-4">Moderate temperature regions</td>
-                <td className="p-4">Standard roads, urban projects</td>
-              </tr>
-              <tr className="border-b">
-                <td className="p-4 font-medium text-primary">VG-30</td>
-                <td className="p-4">50-70</td>
-                <td className="p-4">47-57</td>
-                <td className="p-4">Heavy-duty applications</td>
-                <td className="p-4">High-traffic roads, industrial areas</td>
-              </tr>
-              <tr>
-                <td className="p-4 font-medium text-primary">VG-40</td>
-                <td className="p-4">40-60</td>
-                <td className="p-4">50-60</td>
-                <td className="p-4">Extreme weather conditions</td>
-                <td className="p-4">High-altitude roads, extreme climates</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </section>
+            <section className="relative">
+                <div className="pointer-events-none absolute inset-x-0 -top-24 h-48 bg-gradient-to-b from-sky-500/20 via-transparent to-transparent blur-3xl" />
+                <div className="relative mx-auto max-w-6xl">
+                    <Container delay={0.05} className="space-y-4 text-center">
+                        <h2 className="text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">Bitumen grades ready for mobilisation</h2>
+                        <p className="mx-auto max-w-2xl text-base text-muted-foreground">
+                            Choose from our core grades or request customised blends tuned to axle loads, climate conditions, and mix designs.
+                        </p>
+                    </Container>
 
-      {/* Why Choose Our Products */}
-      <section className="py-12">
-        <h2 className="text-3xl font-bold text-center mb-12">Why Choose Our Bitumen Products?</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          <Card>
-            <CardHeader>
-              <CardTitle>Premium Quality</CardTitle>
-              <CardDescription>All our bitumen products meet international quality standards and undergo rigorous testing</CardDescription>
-            </CardHeader>
-          </Card>
-          <Card>
-            <CardHeader>
-              <CardTitle>30+ Years Experience</CardTitle>
-              <CardDescription>Three decades of expertise in bitumen supply and road construction solutions</CardDescription>
-            </CardHeader>
-          </Card>
-          <Card>
-            <CardHeader>
-              <CardTitle>Reliable Supply</CardTitle>
-              <CardDescription>Consistent availability and timely delivery across Maharashtra and beyond</CardDescription>
-            </CardHeader>
-          </Card>
-          <Card>
-            <CardHeader>
-              <CardTitle>Expert Consultation</CardTitle>
-              <CardDescription>Professional guidance to help you choose the right grade for your project</CardDescription>
-            </CardHeader>
-          </Card>
-          <Card>
-            <CardHeader>
-              <CardTitle>Competitive Pricing</CardTitle>
-              <CardDescription>Best market rates without compromising on quality or service</CardDescription>
-            </CardHeader>
-          </Card>
-          <Card>
-            <CardHeader>
-              <CardTitle>Customer Support</CardTitle>
-              <CardDescription>24/7 support and assistance for all your bitumen requirements</CardDescription>
-            </CardHeader>
-          </Card>
-        </div>
-      </section>
+                    <div className="mt-12 grid gap-6 md:grid-cols-2">
+                        {siteConfig.products.map((product, index) => (
+                            <Container key={product.id} delay={0.1 + index * 0.05} className="h-full">
+                                <ProductCard product={product} />
+                            </Container>
+                        ))}
+                    </div>
+                </div>
+            </section>
 
-      {/* CTA Section */}
-      <section className="py-12 text-center bg-muted/50 rounded-lg">
-        <h2 className="text-3xl font-bold mb-6">Ready to Start Your Project?</h2>
-        <p className="text-lg text-muted-foreground mb-8">
-          Get expert consultation and competitive pricing for your bitumen requirements. 
-          Our team is ready to help you choose the perfect grade for your project.
-        </p>
-        <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <Button 
-            size="lg"
-            onClick={handleWhatsAppClick}
-            className="text-white transition-colors duration-300"
-            style={{ backgroundColor: '#ed3838' }}
-            onMouseEnter={(e) => e.target.style.backgroundColor = '#d32f2f'}
-            onMouseLeave={(e) => e.target.style.backgroundColor = '#ed3838'}
-          >
-            Get Quote on WhatsApp
-          </Button>
-          <Button 
-            size="lg" 
-            variant="outline"
-            asChild
-          >
-            <Link href="/contact">Contact Us</Link>
-          </Button>
-        </div>
-      </section>
-    </Wrapper>
-  );
-}
+            <section className="relative overflow-hidden rounded-3xl border border-border/60 bg-gradient-to-br from-background via-background/70 to-background/40 px-6 py-16 sm:px-10">
+                <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(244,114,182,0.12),transparent_60%)]" />
+                <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_bottom_right,rgba(56,189,248,0.12),transparent_55%)]" />
+                <div className="relative mx-auto max-w-6xl space-y-12">
+                    <Container delay={0.05} className="space-y-4 text-center">
+                        <span className="mx-auto inline-flex items-center justify-center rounded-full border border-border/50 bg-background/70 px-4 py-1 text-xs font-semibold uppercase tracking-[0.3em] text-muted-foreground">
+                            Grade comparison
+                        </span>
+                        <h2 className="text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">Find the viscosity grade that fits your design life</h2>
+                    </Container>
+
+                    <div className="overflow-hidden rounded-3xl border border-border/60 bg-background/85 shadow-xl backdrop-blur">
+                        <table className="w-full text-left text-sm">
+                            <thead className="bg-background/80 text-muted-foreground uppercase tracking-[0.2em] text-xs">
+                                <tr>
+                                    <th className="px-6 py-4 font-semibold text-foreground">Grade</th>
+                                    <th className="px-6 py-4 font-semibold">Penetration (dmm)</th>
+                                    <th className="px-6 py-4 font-semibold">Softening point (deg C)</th>
+                                    <th className="px-6 py-4 font-semibold">Best for</th>
+                                    <th className="px-6 py-4 font-semibold">Typical applications</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {comparisonRows.map((row, index) => (
+                                    <tr key={row.grade} className={index % 2 === 1 ? 'bg-background/60' : ''}>
+                                        <td className="px-6 py-4 text-base font-semibold text-foreground">{row.grade}</td>
+                                        <td className="px-6 py-4 text-muted-foreground">{row.penetration}</td>
+                                        <td className="px-6 py-4 text-muted-foreground">{row.softeningPoint}</td>
+                                        <td className="px-6 py-4 text-muted-foreground">{row.bestFor}</td>
+                                        <td className="px-6 py-4 text-muted-foreground">{row.applications}</td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <section className="relative">
+                <div className="pointer-events-none absolute inset-x-0 -top-20 h-48 bg-gradient-to-b from-red-400/15 via-transparent to-transparent blur-3xl" />
+                <div className="relative mx-auto max-w-6xl space-y-12">
+                    <Container delay={0.05} className="space-y-4 text-center">
+                        <span className="mx-auto inline-flex items-center justify-center rounded-full border border-border/50 bg-background/70 px-4 py-1 text-xs font-semibold uppercase tracking-[0.3em] text-muted-foreground">
+                            Why Ideal Asphalt
+                        </span>
+                        <h2 className="text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">Built-in assurances that keep civil packages on track</h2>
+                    </Container>
+
+                    <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+                        {whyChoose.map((item, index) => (
+                            <Container key={item.title} delay={0.1 + index * 0.05} className="group relative h-full">
+                                <div className="relative flex h-full flex-col overflow-hidden rounded-3xl border border-border/60 bg-background/85 p-8 shadow-lg backdrop-blur transition-transform duration-300 group-hover:-translate-y-1.5 group-hover:border-sky-500/60">
+                                    <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-sky-500/10 via-transparent to-red-500/10 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                                    <div className="relative flex h-full flex-col space-y-4">
+                                        <span className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-border/50 bg-background/90 text-sky-500 shadow-sm">
+                                            <BadgeCheck className="h-5 w-5" />
+                                        </span>
+                                        <h3 className="text-lg font-semibold text-foreground">{item.title}</h3>
+                                        <p className="flex-1 text-sm leading-relaxed text-muted-foreground">{item.description}</p>
+                                    </div>
+                                </div>
+                            </Container>
+                        ))}
+                    </div>
+                </div>
+            </section>
+
+            <section className="relative overflow-hidden rounded-3xl border border-border/60 bg-gradient-to-r from-[#0f172a] via-[#1e293b] to-[#111827] px-6 py-16 text-center text-white sm:px-10">
+                <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(56,189,248,0.2),transparent_55%)]" />
+                <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_bottom,rgba(239,68,68,0.18),transparent_65%)]" />
+                <Container delay={0.05} className="relative space-y-6">
+                    <span className="inline-flex items-center justify-center rounded-full border border-white/20 bg-white/5 px-4 py-1 text-xs font-semibold uppercase tracking-[0.3em]">
+                        Ready to pave
+                    </span>
+                    <h2 className="text-3xl font-semibold tracking-tight sm:text-4xl">
+                        Submit your mix design and we&apos;ll line up the right grade within hours
+                    </h2>
+                    <p className="mx-auto max-w-2xl text-base text-white/70">
+                        Combine trusted grades, disciplined logistics, and responsive advisors so every kilometre meets spec and every pour starts on time.
+                    </p>
+                    <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
+                        <Button
+                            size="lg"
+                            className="bg-white text-slate-900 shadow-lg shadow-white/30 transition-transform duration-300 hover:-translate-y-[2px] hover:shadow-white/40 focus-visible:ring-2 focus-visible:ring-white/60 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900"
+                            onClick={handleWhatsAppQuote}
+                        >
+                            Request a supply quote
+                        </Button>
+                        <Button asChild size="lg" variant="outline" className="border-white/40 bg-white/10 text-white hover:bg-white/20">
+                            <Link href="/contact">Contact our team</Link>
+                        </Button>
+                    </div>
+                </Container>
+            </section>
+        </Wrapper>
+    );
+};
+
+export default ProductsPage;

@@ -6,6 +6,8 @@ import { Button } from "../ui/button";
 import MobileMenu from "./mobile-menu";
 import { siteConfig, getWhatsAppUrl } from "@/config/site";
 
+const primaryButtonClass = "bg-[#ed3838] text-white hover:bg-[#d32f2f] transition-colors duration-300";
+
 const Navbar = () => {
     const handleWhatsAppClick = () => {
         const url = getWhatsAppUrl(siteConfig.whatsappMessages.default);
@@ -18,9 +20,9 @@ const Navbar = () => {
                 <div className="flex items-center justify-between h-full">
                     <div className="flex items-center">
                         <Link href="/" className="flex items-center gap-2">
-                            <img 
-                                src="/ideal-logo.png" 
-                                alt="Ideal Asphalt Logo" 
+                            <img
+                                src="/ideal-logo.png"
+                                alt="Ideal Asphalt Logo"
                                 className="w-8 h-8 object-contain"
                             />
                             <span className="text-xl font-semibold hidden lg:block text-primary">
@@ -42,12 +44,9 @@ const Navbar = () => {
                     </div>
 
                     <div className="flex items-center gap-4">
-                        <Button 
+                        <Button
                             onClick={handleWhatsAppClick}
-                            className="hidden lg:block text-white transition-colors duration-300"
-                            style={{ backgroundColor: '#ed3838' }}
-                            onMouseEnter={(e) => e.target.style.backgroundColor = '#d32f2f'}
-                            onMouseLeave={(e) => e.target.style.backgroundColor = '#ed3838'}
+                            className={`hidden lg:block ${primaryButtonClass}`}
                         >
                             Chat on WhatsApp
                         </Button>
@@ -56,7 +55,7 @@ const Navbar = () => {
                 </div>
             </Wrapper>
         </header>
-    )
+    );
 };
 
-export default Navbar
+export default Navbar;

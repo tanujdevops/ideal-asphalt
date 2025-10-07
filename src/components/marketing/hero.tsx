@@ -1,9 +1,12 @@
+import Image from "next/image";
 import { ArrowRightIcon } from "lucide-react";
 import Link from "next/link";
 import Container from "../global/container";
 import Icons from "../global/icons";
 import { Button } from "../ui/button";
 import { OrbitingCircles } from "../ui/orbiting-circles";
+
+const HERO_IMAGE_PLACEHOLDER = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAoIBgWHgm30AAAAASUVORK5CYII=";
 
 const Hero = () => {
     return (
@@ -50,29 +53,25 @@ const Hero = () => {
                                 <span className="px-2 py-[0.5px] h-[18px] tracking-wide flex items-center justify-center rounded-full bg-gradient-to-r from-sky-400 to-blue-600 text-[9px] font-medium mr-2 text-white">
                                     NEW
                                 </span>
-                                Explore the 2024 recap
+                                View our capabilities
                             </span>
                         </button>
                     </Container>
                     <Container delay={0.15}>
                         <h1 className="text-4xl md:text-4xl lg:text-7xl font-bold text-center !leading-tight max-w-4xl mx-auto">
-                            Transform your {" "}
-                            <span className="">
-                                marketing {" "}
-                            </span>
-                            with AI Precision
+                            Reliable bitumen supply that keeps every corridor on schedule
                         </h1>
                     </Container>
                     <Container delay={0.2}>
                         <p className="max-w-xl mx-auto mt-2 text-base lg:text-lg text-center text-muted-foreground">
-                            AI-powered automation and insights to maximize your campaigns and grow your brand.
+                            Ideal Asphalt sources, certifies, and delivers viscosity-graded bitumen so highways, runways, and industrial corridors stay on schedule.
                         </p>
                     </Container>
                     <Container delay={0.25} className="z-20">
                         <div className="flex items-center justify-center mt-6 gap-x-4">
                             <Link href="#" className="flex items-center gap-2 group">
                                 <Button size="lg">
-                                    Start Free Trial
+                                    Message our supply desk
                                     <ArrowRightIcon className="size-4 group-hover:translate-x-1 transition-all duration-300" />
                                 </Button>
                             </Link>
@@ -83,18 +82,19 @@ const Hero = () => {
                             <div className="absolute top-1/8 left-1/2 -z-10 bg-gradient-to-r from-sky-500 to-blue-600 w-1/2 lg:w-3/4 -translate-x-1/2 h-1/4 -translate-y-1/2 inset-0 blur-[4rem] lg:blur-[10rem] animate-image-glow"></div>
                             <div className="hidden lg:block absolute -top-1/8 left-1/2 -z-20 bg-blue-600 w-1/4 -translate-x-1/2 h-1/4 -translate-y-1/2 inset-0 blur-[10rem] animate-image-glow"></div>
 
-                            <div className="rounded-lg lg:rounded-[22px] border border-border bg-background">
-                                <img
-                                    src="/hero-test.png"
-                                    alt="AI Marketing Automation Hero"
-                                    className="rounded-lg lg:rounded-[20px] w-full h-auto"
-                                    style={{ minHeight: '400px', backgroundColor: '#f0f0f0' }}
-                                    onError={(e) => {
-                                        console.error('Image failed to load:', e);
-                                        e.target.style.backgroundColor = '#ff0000';
-                                    }}
-                                    onLoad={() => console.log('Image loaded successfully')}
-                                />
+                            <div className="relative rounded-lg lg:rounded-[22px] border border-border bg-background overflow-hidden">
+                                <div className="relative aspect-[16/9] min-h-[320px] lg:min-h-[400px] w-full">
+                                    <Image
+                                        src="/images/hero.png"
+                                        alt="AI Marketing Automation Hero"
+                                        fill
+                                        priority
+                                        sizes="(max-width: 1024px) 100vw, 1024px"
+                                        placeholder="blur"
+                                        blurDataURL={HERO_IMAGE_PLACEHOLDER}
+                                        className="object-cover"
+                                    />
+                                </div>
                             </div>
 
                         </div>
@@ -107,4 +107,4 @@ const Hero = () => {
     )
 };
 
-export default Hero
+export default Hero;

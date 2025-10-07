@@ -6,6 +6,8 @@ import { siteConfig, getWhatsAppUrl } from "@/config/site";
 import { Menu } from "lucide-react";
 import Link from "next/link";
 
+const primaryButtonClass = "bg-[#ed3838] text-white hover:bg-[#d32f2f] transition-colors duration-300";
+
 const MobileMenu = () => {
     const handleWhatsAppClick = () => {
         const url = getWhatsAppUrl(siteConfig.whatsappMessages.default);
@@ -34,12 +36,9 @@ const MobileMenu = () => {
                         </Link>
                     ))}
                     <div className="pt-4 mt-4 border-t border-border">
-                        <Button 
+                        <Button
                             onClick={handleWhatsAppClick}
-                            className="w-full text-white transition-colors duration-300"
-                            style={{ backgroundColor: '#ed3838' }}
-                            onMouseEnter={(e) => e.target.style.backgroundColor = '#d32f2f'}
-                            onMouseLeave={(e) => e.target.style.backgroundColor = '#ed3838'}
+                            className={`w-full ${primaryButtonClass}`}
                         >
                             Chat on WhatsApp
                         </Button>
@@ -47,7 +46,7 @@ const MobileMenu = () => {
                 </nav>
             </SheetContent>
         </Sheet>
-    )
+    );
 };
 
-export default MobileMenu
+export default MobileMenu;

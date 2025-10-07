@@ -12,13 +12,7 @@ export default function WhatsAppButton() {
   return (
     <button
       onClick={handleClick}
-      className="fixed bottom-6 right-6 z-50 text-white p-4 rounded-full shadow-lg transition-all duration-300 hover:scale-110 focus:outline-none focus:ring-4"
-      style={{ 
-        backgroundColor: '#ed3838',
-        '--tw-ring-color': '#ed3838'
-      } as React.CSSProperties}
-      onMouseEnter={(e) => e.target.style.backgroundColor = '#d32f2f'}
-      onMouseLeave={(e) => e.target.style.backgroundColor = '#ed3838'}
+      className="fixed bottom-6 right-6 z-50 rounded-full bg-[#ed3838] p-4 text-white shadow-lg transition-transform duration-300 hover:scale-110 hover:bg-[#d32f2f] focus:outline-none focus:ring-4 focus:ring-[#ed3838]/40"
       aria-label="Chat with Ideal Asphalt on WhatsApp"
       title="Chat with Ideal Asphalt on WhatsApp"
     >

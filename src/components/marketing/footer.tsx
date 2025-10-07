@@ -5,6 +5,8 @@ import Container from "../global/container";
 import { siteConfig, getWhatsAppUrl } from "@/config/site";
 import { Button } from "../ui/button";
 
+const primaryButtonClass = "bg-[#ed3838] text-white hover:bg-[#d32f2f] transition-colors duration-300";
+
 const Footer = () => {
     const handleWhatsAppClick = () => {
         const url = getWhatsAppUrl(siteConfig.whatsappMessages.default);
@@ -17,9 +19,9 @@ const Footer = () => {
                 <Container>
                     <div className="flex flex-col items-start justify-start md:max-w-[300px]">
                         <div className="flex items-center gap-2">
-                            <img 
-                                src="/ideal-logo.png" 
-                                alt="Ideal Asphalt Logo" 
+                            <img
+                                src="/ideal-logo.png"
+                                alt="Ideal Asphalt Logo"
                                 className="w-8 h-8 object-contain"
                             />
                             <span className="text-base md:text-lg font-medium text-foreground">
@@ -30,12 +32,9 @@ const Footer = () => {
                             {siteConfig.shortDescription}
                         </p>
                         <div className="mt-4">
-                            <Button 
+                            <Button
                                 onClick={handleWhatsAppClick}
-                                className="text-white transition-colors duration-300"
-                                style={{ backgroundColor: '#ed3838' }}
-                                onMouseEnter={(e) => e.target.style.backgroundColor = '#d32f2f'}
-                                onMouseLeave={(e) => e.target.style.backgroundColor = '#ed3838'}
+                                className={primaryButtonClass}
                             >
                                 Chat on WhatsApp
                             </Button>
@@ -150,7 +149,7 @@ const Footer = () => {
                 </div>
             </Container>
         </footer>
-    )
+    );
 };
 
-export default Footer
+export default Footer;
