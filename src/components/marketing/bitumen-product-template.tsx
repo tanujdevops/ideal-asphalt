@@ -58,7 +58,7 @@ const BitumenProductTemplate = ({
                 <div className="pointer-events-none absolute -left-24 top-1/3 h-64 w-64 rounded-full bg-red-500/20 blur-3xl" />
                 <div className="pointer-events-none absolute -right-20 bottom-0 h-72 w-72 rounded-full bg-sky-500/25 blur-3xl" />
 
-                <div className="relative z-10 grid gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
+                <div className="relative z-10 flex flex-col-reverse gap-12 lg:grid lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
                     <Container delay={0.05} className="space-y-8 text-center lg:text-left">
                         <div className="mx-auto inline-flex items-center gap-2 rounded-full border border-border/40 bg-background/80 px-4 py-1.5 text-sm font-medium text-foreground/80 shadow-sm backdrop-blur lg:mx-0">
                             <Sparkles className="h-4 w-4 text-sky-500" />

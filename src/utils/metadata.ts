@@ -15,11 +15,11 @@ export const generateMetadata = ({
     icons = [
         {
             rel: "icon",
-            url: "/ideal-logo.png",
+            url: "/favicon.png",
         },
         {
             rel: "apple-touch-icon",
-            url: "/ideal-logo.png",
+            url: "/favicon.png",
         },
     ],
     noIndex = false,
