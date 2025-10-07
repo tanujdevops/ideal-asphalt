@@ -36,7 +36,7 @@ const Footer = () => {
                                 onClick={handleWhatsAppClick}
                                 className={primaryButtonClass}
                             >
-                                Chat on WhatsApp
+                                Chat with Ideal Asphalt
                             </Button>
                         </div>
                     </div>

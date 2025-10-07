@@ -41,8 +41,25 @@ const MobileMenu = () => {
                 </Button>
             </SheetTrigger>
             <SheetContent side="right" className="w-full sm:w-[300px] pt-12">
-                <SheetHeader className="mb-8">
-                    <SheetTitle className="text-left">Menu</SheetTitle>
+                <SheetHeader className="mb-8 space-y-4 text-left">
+                    <div className="flex items-center gap-3">
+                        <img
+                            src="/ideal-logo.png"
+                            alt="Ideal Asphalt Logo"
+                            className="w-10 h-10 object-contain"
+                        />
+                        <div className="flex flex-col leading-tight">
+                            <span className="text-lg font-semibold text-foreground">
+                                {siteConfig.businessName}
+                            </span>
+                            <span className="text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground">
+                                {siteConfig.tagline}
+                            </span>
+                        </div>
+                    </div>
+                    <SheetTitle className="text-sm font-semibold uppercase tracking-[0.3em] text-muted-foreground">
+                        Menu
+                    </SheetTitle>
                 </SheetHeader>
                 <nav className="flex flex-col space-y-4">
                     {siteConfig.navigation.map((link) => (
@@ -60,7 +77,7 @@ const MobileMenu = () => {
                             onClick={handleWhatsAppClick}
                             className={`w-full ${primaryButtonClass}`}
                         >
-                            Chat on WhatsApp
+                            Chat with Ideal Asphalt
                         </Button>
                     </div>
                 </nav>

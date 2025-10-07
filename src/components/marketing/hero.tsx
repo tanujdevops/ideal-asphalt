@@ -57,21 +57,26 @@ const Hero = () => {
                             </span>
                         </button>
                     </Container>
+                    <Container delay={0.1}>
+                        <span className="inline-flex items-center rounded-full border border-primary/20 bg-primary/5 px-4 py-1 text-xs font-semibold uppercase tracking-[0.3em] text-primary">
+                            Ideal Asphalt
+                        </span>
+                    </Container>
                     <Container delay={0.15}>
                         <h1 className="text-4xl md:text-4xl lg:text-7xl font-bold text-center !leading-tight max-w-4xl mx-auto">
-                            Reliable bitumen supply that keeps every corridor on schedule
+                            Ideal Asphalt keeps India's infrastructure moving with reliable bitumen supply
                         </h1>
                     </Container>
                     <Container delay={0.2}>
                         <p className="max-w-xl mx-auto mt-2 text-base lg:text-lg text-center text-muted-foreground">
-                            Ideal Asphalt sources, certifies, and delivers viscosity-graded bitumen so highways, runways, and industrial corridors stay on schedule.
+                            From refinery coordination to on-site delivery, Ideal Asphalt pairs decades of petroleum expertise with compliance-ready documentation so contractors and consultants can trust every tanker that arrives.
                         </p>
                     </Container>
                     <Container delay={0.25} className="z-20">
                         <div className="flex items-center justify-center mt-6 gap-x-4">
-                            <Link href="#" className="flex items-center gap-2 group">
+                            <Link href="/contact" className="flex items-center gap-2 group">
                                 <Button size="lg">
-                                    Message our supply desk
+                                    Talk to Ideal Asphalt
                                     <ArrowRightIcon className="size-4 group-hover:translate-x-1 transition-all duration-300" />
                                 </Button>
                             </Link>

@@ -7,6 +7,7 @@ export const siteConfig = {
   email: "info@idealasphalt.in",
   address: "254, Hira Manik Bunglow, Ruikar Colony, Kolhapur - 416005, Maharashtra, India",
   shortDescription: "Ideal Asphalt - premium bitumen and petroleum solutions. Serving road construction and infrastructure projects for 30+ years.",
+  tagline: "Bitumen & Petroleum Specialists",
   siteUrl: "https://idealasphalt.in",
   openingHours: "Mon-Sat: 10:00-19:00",
   copyrightYear: "2025",
