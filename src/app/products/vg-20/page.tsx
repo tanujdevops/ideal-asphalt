@@ -103,7 +103,7 @@ const VG20Page = () => {
         },
         {
             question: "Do you support compliance approvals?",
-            answer: "We provide complete documentation—MSDS, QA reports, and statutory certificates—so consultant and PMC approvals are straightforward.",
+            answer: "We provide complete documentationâ€”MSDS, QA reports, and statutory certificatesâ€”so consultant and PMC approvals are straightforward.",
         },
     ];
 

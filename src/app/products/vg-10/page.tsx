@@ -95,11 +95,11 @@ const VG10Page = () => {
     const faqs = [
         {
             question: "Where does VG-10 perform best?",
-            answer: "VG-10 excels on high-temperature expressways, airport pavements, and premium urban roads where surface temperatures regularly exceed 60°C.",
+            answer: "VG-10 excels on high-temperature expressways, airport pavements, and premium urban roads where surface temperatures regularly exceed 60Â°C.",
         },
         {
             question: "How quickly can you mobilise supply?",
-            answer: "Share tonnage, dispatch timelines, and the delivery point—Ideal Asphalt aligns stock, transport, and compliance paperwork within hours.",
+            answer: "Share tonnage, dispatch timelines, and the delivery pointâ€”Ideal Asphalt aligns stock, transport, and compliance paperwork within hours.",
         },
         {
             question: "Do you assist with mix design adjustments?",
